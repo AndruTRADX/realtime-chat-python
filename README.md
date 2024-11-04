@@ -1,53 +1,67 @@
-Realtime Chat Python
+# Realtime Chat Python
+
 Este es un proyecto de chat en tiempo real utilizando Flask, Flask-SocketIO y MySQL. Los usuarios pueden unirse a diferentes salas de chat y enviar mensajes que se almacenan en una base de datos MySQL.
 
-Requisitos Previos
+## Requisitos Previos
+
 Asegúrate de tener instalados los siguientes componentes antes de comenzar:
 
-Python 3.7+
-MySQL
-pip (Administrador de paquetes de Python)
+- Python 3.7+
+- MySQL
+- pip (Administrador de paquetes de Python)
 
+## Instalación y Configuración
 
-Instalación y Configuración
-Paso 1: Clonar el Repositorio
+### Paso 1: Clonar el Repositorio
 
+```
 git clone https://github.com/tu-usuario/realtime-chat-python.git
 cd realtime-chat-python
+```
 
+### Paso 2: Crear un Entorno Virtual
 
-Paso 2: Crear un Entorno Virtual
 Es recomendable crear un entorno virtual para manejar las dependencias.
 
+```
 python3 -m venv venv
 source venv/bin/activate  # En Windows usa `venv\Scripts\activate`
+```
 
-Paso 3: Instalar Dependencias
-Instala las dependencias que están listadas en requirements.txt.
+### Paso 3: Instalar Dependencias
 
+Instala las dependencias que están listadas en `requirements.txt`.
+
+```
 pip install -r requirements.txt
+```
 
-Paso 4: Configurar la Base de Datos MySQL
-Inicia MySQL y asegúrate de tener las credenciales de acceso.
+### Paso 4: Configurar la Base de Datos MySQL
 
-Ejecuta el script SQL de configuración que creará la base de datos y las tablas necesarias.
+1. Inicia MySQL y asegúrate de tener las credenciales de acceso.
+2. Ejecuta el script SQL de configuración que creará la base de datos y las tablas necesarias.
 
+```
 mysql -u tu_usuario -p < sql/setup_db.sql
-Nota: Asegúrate de reemplazar tu_usuario con el usuario que usas en MySQL.
+```
 
-Contenido del archivo sql/setup_db.sql
+**Nota:** Asegúrate de reemplazar `tu_usuario` con el usuario que usas en MySQL.
+
+#### Contenido del archivo `sql/setup_db.sql`
 
 Este script se encarga de:
 
-Crear la base de datos chat_app si aún no existe.
-Usar la base de datos chat_app.
-Crear las tablas rooms y messages solo si no existen.
+1. Crear la base de datos `chat_app` si aún no existe.
+2. Usar la base de datos `chat_app`.
+3. Crear las tablas `rooms` y `messages` solo si no existen.
 
-Paso 5: Configurar las Credenciales de la Base de Datos
-Abre el archivo config/db_config.py.
+### Paso 5: Configurar las Credenciales de la Base de Datos
+
+Abre el archivo `config/db_config.py`.
 
 Reemplaza las credenciales con las de tu instalación de MySQL:
 
+```python
 import mysql.connector
 
 def get_db_connection():
@@ -57,18 +71,25 @@ def get_db_connection():
         password="tu_contraseña",
         database="chat_app"
     )
-Cambia tu_usuario, tu_contraseña y chat_app por los valores correctos.
+```
 
-Paso 6: Ejecutar el Proyecto
+Cambia `tu_usuario`, `tu_contraseña` y `chat_app` por los valores correctos.
+
+### Paso 6: Ejecutar el Proyecto
+
 Asegúrate de que el entorno virtual está activo.
 
 Ejecuta el servidor de Flask:
 
+```
 python main.py
-Abre tu navegador y accede a http://localhost:5000 para ver la aplicación.
+```
 
-Estructura del Proyecto
+Abre tu navegador y accede a `http://localhost:5000` para ver la aplicación.
 
+## Estructura del Proyecto
+
+```
 realtime-chat-python/
 │
 ├── main.py                         # Archivo principal con la lógica de la aplicación y los sockets
@@ -93,12 +114,15 @@ realtime-chat-python/
 │
 └── sql/
     └── setup_db.sql                # Script SQL de creación de la base de datos y las tablas
+```
 
-Uso de la Aplicación
-Ingresa un nombre en la página de inicio.
-Puedes unirte a una sala existente ingresando el código de la sala o crear una nueva sala.
-Envía mensajes en tiempo real dentro de la sala de chat.
-Los mensajes enviados se almacenarán en la base de datos MySQL y se cargarán cuando un usuario ingrese a una sala.
+## Uso de la Aplicación
 
-Script de Creación de Base de Datos
-El archivo sql/setup_db.sql contiene el script SQL para crear las tablas necesarias.
+1. Ingresa un nombre en la página de inicio.
+2. Puedes unirte a una sala existente ingresando el código de la sala o crear una nueva sala.
+3. Envía mensajes en tiempo real dentro de la sala de chat.
+4. Los mensajes enviados se almacenarán en la base de datos MySQL y se cargarán cuando un usuario ingrese a una sala.
+
+## Script de Creación de Base de Datos
+
+El archivo `sql/setup_db.sql` contiene el script SQL para crear las tablas necesarias.
